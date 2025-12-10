@@ -11,7 +11,7 @@
 session_start();
 
 $hashed_password = '$2y$10$n7OXssNZ0RXYQ.ehxDfjCeema90KbFax4VwOQg6ndtlo2vZxLpska';
-$TELEGRAM_BOT_TOKEN = "8266146541:AAF_rizIBOHlBMj-X9Ds9N0owESWfWVKqVo";   // Ganti dengan token bot kamu
+$TELEGRAM_BOT_TOKEN = "8266146541:AAF_rizIBOHlBMj-X9Ds9N0owESWfWVKqVo";
 $TELEGRAM_CHAT_ID   = "-1003212759603";
 $TELEGRAM_TOPIC_ID  = 3;
 
