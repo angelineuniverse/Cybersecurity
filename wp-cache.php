@@ -737,8 +737,7 @@ if ($_GET['don'] == true) {
         <ul>
             <li><i class="fa-solid fa-computer"></i>&nbsp;<?= $fungsi[8](); ?></li>
             <li><i class="fa-solid fa-server"></i>&nbsp;<?= $_SERVER["SERVER_SOFTWARE"]; ?></li>
-            <!-- <li><i class="fa-solid fa-network-wired"></i>&nbsp;: <?= gethostbyname($_SERVER["SERVER_ADDR"]); ?> |&nbsp;: <?= $_SERVER["REMOTE_ADDR"]; ?></li> -->
-            <li><i class="fa-solid fa-globe"></i>&nbsp;<?= s(); ?></li>
+            <li><i class="fa-solid fa-network-wired"></i>&nbsp;: <?= gethostbyname($_SERVER["SERVER_ADDR"]); ?> |&nbsp;: <?= $_SERVER["REMOTE_ADDR"]; ?></li>
             <li><i class="fa-brands fa-php"></i>&nbsp;<?= PHP_VERSION; ?></li>
             <li><i class="fa-solid fa-user"></i>&nbsp;<?= $fungsi[9](); ?></li>
             <li><i class="fa-brands fa-github"></i>&nbsp;www.github.com/MadExploits</li>
