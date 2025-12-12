@@ -91,17 +91,17 @@ if (!isset($_SESSION['logged_in'])) {
     </head>
 
     <body>
-        <div class="flex justify-center items-center min-h-screen bg-gray-50 p-4">
-            <div class="w-full max-w-sm bg-white rounded-xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-[1.01]">
+        <div class="flex justify-center items-center min-h-screen bg-gray-900 p-4">
+            <div class="w-full max-w-sm bg-gray-800 border border-gray-700 rounded-xl shadow-2xl overflow-hidden">
                 <div class="p-8 md:p-10">
 
-                    <h1 class="mb-8 text-center font-extrabold text-2xl text-gray-800 tracking-wider">
+                    <h1 class="mb-8 text-center font-extrabold text-2xl text-gray-100 tracking-wider">
                         RUSHERCLOUD
                     </h1>
 
                     <?php if (isset($login_error)): ?>
-                        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-3 mb-6 rounded-md" role="alert">
-                            <p class="font-semibold">Login Gagal</p>
+                        <div class="bg-red-900 border-l-4 border-red-500 text-red-300 p-3 mb-6 rounded-md" role="alert">
+                            <p class="font-semibold">Authentication Failed</p>
                             <p class="text-sm mt-1"><?= htmlspecialchars($login_error); ?></p>
                         </div>
                     <?php endif; ?>
@@ -109,15 +109,16 @@ if (!isset($_SESSION['logged_in'])) {
                     <form method="POST">
                         <input type="password" id="password" name="password" required
                             placeholder="PASSPHRASE"
-                            class="w-full mb-6 text-base px-4 py-3 border border-gray-300 rounded-lg 
-                           focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
+                            class="w-full mb-6 text-base px-4 py-3 bg-gray-700 text-gray-100 border border-gray-700 rounded-lg 
+                           placeholder-gray-400
+                           focus:ring-2 focus:ring-green-500 focus:border-green-500 
                            transition duration-200 ease-in-out focus:outline-none">
 
                         <button type="submit"
                             class="w-full text-white text-lg py-3 rounded-lg font-bold 
-                           bg-blue-600 hover:bg-blue-700 active:bg-blue-800 
+                           bg-green-600 hover:bg-green-700 active:bg-green-800 
                            shadow-md hover:shadow-lg transition duration-200 
-                           ease-in-out tracking-wide">
+                           ease-in-out tracking-wide focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-800">
                             INITIATE SEQUENCE
                         </button>
                     </form>
