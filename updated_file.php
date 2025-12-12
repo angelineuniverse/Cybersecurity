@@ -822,7 +822,6 @@ if ($_GET['don'] == true) {
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             border: 1px solid #64ffda;
             position: relative;
-            max-height: calc(100vh - 160px);
             display: flex;
             flex-direction: column;
             overflow: auto;
