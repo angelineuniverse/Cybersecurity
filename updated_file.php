@@ -623,6 +623,8 @@ if ($_GET['don'] == true) {
             height: 100vh;
             overflow: hidden;
             padding: 12px;
+            display: flex;
+            flex-direction: column;
             margin: 0;
         }
 
