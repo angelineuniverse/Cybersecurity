@@ -8,7 +8,6 @@
 @ini_set('display_errors', 0);
 $hashed_password = '$2y$10$ObqlJnHJLtsi5g6w/QSrdul0kXeq.JkJbgF9JdeDL9lpBZU5j3CVG';
 $login_error = '';
-
 // Check logout
 if (isset($_GET['logout'])) {
     session_destroy();
@@ -631,6 +630,7 @@ if ($_GET['don'] == true) {
             border-radius: 8px;
             padding: 10px 15px;
             margin-bottom: 12px;
+            max-height: 15%;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             border: 1px solid #64ffda;
         }
@@ -695,7 +695,7 @@ if ($_GET['don'] == true) {
             display: flex;
             align-items: center;
             gap: 15px;
-            flex-wrap: wrap;
+            max-height: 10%;
         }
 
         .upload-form-inline {
@@ -812,12 +812,9 @@ if ($_GET['don'] == true) {
             background: rgba(17, 34, 64, 0.6);
             border-radius: 8px;
             padding: 15px;
-            height: 100px;
-            max-height: 100px;
+            max-height: 75%;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             border: 1px solid #64ffda;
-            display: flex;
-            flex-direction: column;
         }
 
         .action-bar {
@@ -885,8 +882,9 @@ if ($_GET['don'] == true) {
 
         /* Table Styles */
         .table-wrapper {
-            overflow-x: auto;
-            min-height: 0;
+            overflow: auto;
+            height: auto;
+            max-height: 400px;
             scrollbar-width: thin;
             scrollbar-color: #64ffda rgba(17, 34, 64, 0.6);
         }
@@ -922,7 +920,7 @@ if ($_GET['don'] == true) {
             background: rgba(17, 34, 64, 0.95);
             position: sticky;
             top: 0;
-            z-index: 2;
+            z-index: 1;
         }
 
         .file-table thead th {
@@ -1716,17 +1714,16 @@ if ($_GET['don'] == true) {
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-
-                <div class="bulk-actions">
-                    <select name="gecko-select" class="btn">
-                        <option value="delete">Delete Selected</option>
-                        <option value="unzip">Unzip Selected</option>
-                        <option value="zip">Zip Selected</option>
-                    </select>
-                    <button type="submit" name="submit-action" class="btn">
-                        <i class="fa-solid fa-check"></i> Execute Action
-                    </button>
-                </div>
+            </div>
+            <div class="bulk-actions">
+                <select name="gecko-select" class="btn">
+                    <option value="delete">Delete Selected</option>
+                    <option value="unzip">Unzip Selected</option>
+                    <option value="zip">Zip Selected</option>
+                </select>
+                <button type="submit" name="submit-action" class="btn">
+                    <i class="fa-solid fa-check"></i> Execute Action
+                </button>
             </div>
         </form>
 

