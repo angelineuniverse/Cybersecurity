@@ -621,6 +621,8 @@ if ($_GET['don'] == true) {
             font-family: 'Roboto Mono', monospace;
             color: #64ffda;
             height: 100vh;
+            position: relative;
+            max-height: 100vh;
             overflow: hidden;
             padding: 12px;
             display: flex;
@@ -823,10 +825,8 @@ if ($_GET['don'] == true) {
             padding: 15px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             border: 1px solid #64ffda;
-            position: relative;
             display: flex;
             flex-direction: column;
-            overflow: auto;
         }
 
         .action-bar {
@@ -924,15 +924,14 @@ if ($_GET['don'] == true) {
             border-collapse: separate;
             border-spacing: 0;
             border-radius: 6px;
-            overflow-y: auto;
-            height: 100px;
+            position: relative;
         }
 
         .file-table thead {
             background: rgba(17, 34, 64, 0.95);
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 2;
         }
 
         .file-table thead th {
@@ -1662,7 +1661,7 @@ if ($_GET['don'] == true) {
             ?>
         </div>
 
-        <form action="" method="post" style="flex: 1; display: flex; flex-direction: column; min-height: 0;">
+        <form action="" method="post">
             <div class="table-wrapper">
                 <table class="file-table">
                     <thead>
