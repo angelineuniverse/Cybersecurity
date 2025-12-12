@@ -91,20 +91,37 @@ if (!isset($_SESSION['logged_in'])) {
     </head>
 
     <body>
-        <div class="flex justify-center items-center h-max-screen h-screen">
-            <div class="h-fit w-3/16">
-                <div class="py-10 px-8">
-                    <h1 class="mb-10 text-center font-bold text-xl">RUSHERCLOUD</h1>
+        <div class="flex justify-center items-center min-h-screen bg-gray-50 p-4">
+            <div class="w-full max-w-sm bg-white rounded-xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-[1.01]">
+                <div class="p-8 md:p-10">
+
+                    <h1 class="mb-8 text-center font-extrabold text-2xl text-gray-800 tracking-wider">
+                        RUSHERCLOUD
+                    </h1>
+
                     <?php if (isset($login_error)): ?>
-                        <div class="alert alert-danger mb-4">
-                            <?= htmlspecialchars($login_error); ?>
+                        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-3 mb-6 rounded-md" role="alert">
+                            <p class="font-semibold">Login Gagal</p>
+                            <p class="text-sm mt-1"><?= htmlspecialchars($login_error); ?></p>
                         </div>
                     <?php endif; ?>
+
                     <form method="POST">
                         <input type="password" id="password" name="password" required
-                            placeholder="PASSPHRASE" class="w-full mb-8 text-base px-3 py-2 border-[1.5px] border-black rounded-lg shadow-[2.5px_3px_0_#000] focus:outline-none transition ease-in-out duration-250 focus:shadow-[5.5px_7px_0_black]">
-                        <button type="submit" class="w-fit text-base px-3 py-2 border-[1.5px] border-black rounded-lg font-semibold cursor-pointer shadow-[2.5px_3px_0_#000] transition ease-in-out duration-250 hover:shadow-[5.5px_7px_0_black] active:translate-y-[2.5px] active:shadow-[0_0_0_#000] bg-gray-200 hover:bg-gray-300">INITIATE SEQUENCE</button>
+                            placeholder="PASSPHRASE"
+                            class="w-full mb-6 text-base px-4 py-3 border border-gray-300 rounded-lg 
+                           focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
+                           transition duration-200 ease-in-out focus:outline-none">
+
+                        <button type="submit"
+                            class="w-full text-white text-lg py-3 rounded-lg font-bold 
+                           bg-blue-600 hover:bg-blue-700 active:bg-blue-800 
+                           shadow-md hover:shadow-lg transition duration-200 
+                           ease-in-out tracking-wide">
+                            INITIATE SEQUENCE
+                        </button>
                     </form>
+
                 </div>
             </div>
         </div>
