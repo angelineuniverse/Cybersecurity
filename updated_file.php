@@ -620,13 +620,8 @@ if ($_GET['don'] == true) {
             background-color: #0a192f;
             font-family: 'Roboto Mono', monospace;
             color: #64ffda;
-            height: 100vh;
             position: relative;
-            max-height: 100vh;
-            overflow: hidden;
             padding: 12px;
-            display: flex;
-            flex-direction: column;
             margin: 0;
         }
 
