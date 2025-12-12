@@ -638,9 +638,6 @@ if ($_GET['don'] == true) {
             margin-bottom: 12px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             border: 1px solid #64ffda;
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
 
         .header-title {
@@ -704,9 +701,6 @@ if ($_GET['don'] == true) {
             align-items: center;
             gap: 15px;
             flex-wrap: wrap;
-            position: sticky;
-            top: 75px;
-            z-index: 99;
         }
 
         .upload-form-inline {
@@ -823,6 +817,8 @@ if ($_GET['don'] == true) {
             background: rgba(17, 34, 64, 0.6);
             border-radius: 8px;
             padding: 15px;
+            height: 100px;
+            max-height: 100px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             border: 1px solid #64ffda;
             display: flex;
